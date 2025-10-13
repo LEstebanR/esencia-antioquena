@@ -26,8 +26,8 @@ const products = [
 
 export default function Tienda() {
   return (
-    <section className="py-20 px-4 md:px-0 md:w-8/12 w-full mx-auto min-h-[calc(100vh-4rem)]">
-      <h2 className="text-2xl text-center text-primary mb-12 font-bold">
+    <section className="my-[6rem] px-4 md:px-0 md:w-8/12 w-full mx-auto min-h-[calc(100vh-4rem)]">
+      <h2 className="text-3xl text-center text-primary mb-12 font-bold">
         Nuestros Productos
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

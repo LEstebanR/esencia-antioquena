@@ -28,9 +28,9 @@ export default function Home() {
               productos de café y otros derivados.
             </p>
             <Link href="/tienda">
-              <Button size="lg" className="w-fit">
+              <Button size="lg" className="w-fit hover:bg-primary/90 group">
                 Descubre nuestro café
-                <ArrowRightIcon className="size-4" />
+                <ArrowRightIcon className="size-4 group-hover:translate-x-2 transition-all duration-300" />
               </Button>
             </Link>
           </div>

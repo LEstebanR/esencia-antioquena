@@ -38,7 +38,7 @@ export function Header() {
               <Link
                 href={item.href}
                 key={item.href}
-                className="flex items-center gap-2"
+                className="flex items-center gap-2  hover:text-primary hover:transition-all hover:duration-300"
               >
                 {item.icon} {item.label}
               </Link>

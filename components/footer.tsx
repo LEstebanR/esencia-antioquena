@@ -10,7 +10,11 @@ export function Footer() {
           <span className="text-slate-500">Hecho con</span>
           <Heart className="h-4 w-4 text-red-500" />
           <span className="text-slate-500">por</span>
-          <Link href="https://lesteban.dev" target="_blank">
+          <Link
+            href="https://lesteban.dev"
+            target="_blank"
+            className="hover:underline hover:text-primary hover:underline-offset-4 hover:transition-all hover:duration-300"
+          >
             LEstebanR
           </Link>
         </div>
