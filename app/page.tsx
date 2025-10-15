@@ -1,9 +1,18 @@
+"use client";
+
 import { Button } from "@/components/ui/button";
 import { ArrowRightIcon, Coffee, Award, Users, Zap } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 export default function Home() {
+  const historyRef = useRef(null);
+  const valuesRef = useRef(null);
+  const isHistoryInView = useInView(historyRef, { once: true, amount: 0.3 });
+  const isValuesInView = useInView(valuesRef, { once: true, amount: 0.2 });
+
   return (
     <>
       <section className="relative flex items-center justify-center min-h-screen md:h-[calc(100vh-4rem)] overflow-hidden px-4 md:px-0">
@@ -20,80 +29,182 @@ export default function Home() {
           <div className="grid md:grid-cols-2 gap-12 items-center py-20">
             {/* Contenido principal */}
             <div className="space-y-8 text-center md:text-left">
-              <div className="flex justify-center md:justify-start">
-                <div className="bg-white/95 backdrop-blur-sm rounded-2xl w-32 h-32 flex items-center justify-center shadow-2xl border-2 border-primary/20 group hover:scale-105 transition-transform duration-300">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.5 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}
+                className="flex justify-center md:justify-start"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-white/95 backdrop-blur-sm rounded-2xl w-32 h-32 flex items-center justify-center shadow-2xl border-2 border-primary/20"
+                >
                   <p className="text-primary font-bold text-sm text-center px-2">
                     Logo Esencia Antioqueña
                   </p>
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
 
               <div className="space-y-6">
-                <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight">
-                  <span className="text-primary">Esencia</span> Antioqueña
-                </h1>
-                <p className="text-white/90 text-xl md:text-2xl leading-relaxed max-w-lg">
+                <motion.h1
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.2 }}
+                  className="text-5xl md:text-6xl font-bold text-white leading-tight"
+                >
+                  <motion.span
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.5, delay: 0.4 }}
+                    className="text-primary"
+                  >
+                    Esencia
+                  </motion.span>{" "}
+                  Antioqueña
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.7, delay: 0.5 }}
+                  className="text-white/90 text-xl md:text-2xl leading-relaxed max-w-lg"
+                >
                   Somos una empresa dedicada a la producción y comercialización
                   de productos de café y otros derivados.
-                </p>
+                </motion.p>
               </div>
 
-              <div className="flex justify-center md:justify-start">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.7 }}
+                className="flex justify-center md:justify-start"
+              >
                 <Link href="/tienda">
-                  <Button
-                    size="lg"
-                    className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-full shadow-2xl hover:shadow-primary/25 group transition-all duration-300 hover:scale-105"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                   >
-                    Descubre nuestro café
-                    <ArrowRightIcon className="ml-2 size-5 group-hover:translate-x-2 transition-all duration-300" />
-                  </Button>
+                    <Button
+                      size="lg"
+                      className="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-4 text-lg rounded-full shadow-2xl hover:shadow-primary/25 group transition-all duration-300"
+                    >
+                      Descubre nuestro café
+                      <ArrowRightIcon className="ml-2 size-5 group-hover:translate-x-2 transition-all duration-300" />
+                    </Button>
+                  </motion.div>
                 </Link>
-              </div>
+              </motion.div>
             </div>
 
             {/* Imagen */}
-            <div className="relative hidden md:block">
-              <div className="relative group">
+            <motion.div
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative hidden md:block"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.5 }}
+                className="relative group"
+              >
                 <Image
                   src="/cafe.jpg"
                   alt="Esencia Antioqueña"
                   width={500}
                   height={600}
-                  className="w-full h-[500px] object-cover rounded-3xl shadow-2xl border-4 border-primary/30 group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-[500px] object-cover rounded-3xl shadow-2xl border-4 border-primary/30"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-3xl"></div>
-                <div className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg">
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: 1 }}
+                  className="absolute bottom-4 left-4 right-4 bg-white/90 backdrop-blur-sm rounded-2xl p-4 shadow-lg"
+                >
                   <p className="text-primary font-semibold text-center">
                     Café 100% Antioqueño
                   </p>
-                </div>
-              </div>
-            </div>
+                </motion.div>
+              </motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-      <section className="py-24 bg-gradient-to-br from-background to-muted/30 px-4 md:px-0">
+      <section
+        ref={historyRef}
+        className="py-24 bg-gradient-to-br from-background to-muted/30 px-4 md:px-0"
+      >
         <div className="max-w-6xl mx-auto">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Contenido de texto */}
-            <div className="space-y-8">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={
+                isHistoryInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="space-y-8"
+            >
               <div className="space-y-4">
-                <div className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-6">
+                <motion.div
+                  initial={{ scale: 0, rotate: -180 }}
+                  animate={
+                    isHistoryInView
+                      ? { scale: 1, rotate: 0 }
+                      : { scale: 0, rotate: -180 }
+                  }
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="inline-flex items-center justify-center w-16 h-16 bg-primary/10 rounded-2xl mb-6"
+                >
                   <Coffee className="w-8 h-8 text-primary" />
-                </div>
-                <h2 className="text-4xl md:text-5xl font-bold text-primary leading-tight">
+                </motion.div>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isHistoryInView
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.6, delay: 0.3 }}
+                  className="text-4xl md:text-5xl font-bold text-primary leading-tight"
+                >
                   Nuestra Historia
-                </h2>
-                <div className="w-20 h-1 bg-primary rounded-full"></div>
+                </motion.h2>
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={isHistoryInView ? { width: 80 } : { width: 0 }}
+                  transition={{ duration: 0.8, delay: 0.5 }}
+                  className="h-1 bg-primary rounded-full"
+                ></motion.div>
               </div>
 
               <div className="space-y-6">
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isHistoryInView
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.6, delay: 0.6 }}
+                  className="text-lg text-muted-foreground leading-relaxed"
+                >
                   Hace 27 años, en las montañas de Santa Bárbara, en la Finca El
                   Kinder, Luis Alonso y Luz Ángela sembraron más que café:
                   sembraron un sueño.
-                </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                </motion.p>
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={
+                    isHistoryInView
+                      ? { opacity: 1, y: 0 }
+                      : { opacity: 0, y: 20 }
+                  }
+                  transition={{ duration: 0.6, delay: 0.8 }}
+                  className="text-lg text-muted-foreground leading-relaxed"
+                >
                   Con amor, constancia y el legado de Don Emilio y Doña
                   Virgelina, hoy ese sueño florece en una taza con nombre
                   propio:
@@ -103,47 +214,116 @@ export default function Home() {
                   </span>
                   , el reflejo del esfuerzo y la tradición de una familia
                   cafetera.
-                </p>
+                </motion.p>
               </div>
-            </div>
+            </motion.div>
 
             {/* Elemento visual */}
-            <div className="relative">
-              <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 h-80 flex items-center justify-center">
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={
+                isHistoryInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
+              }
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative"
+            >
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+                className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-3xl p-8 h-80 flex items-center justify-center"
+              >
                 <div className="text-center space-y-4">
-                  <div className="text-6xl font-bold text-primary/20">27</div>
-                  <div className="text-lg font-semibold text-primary">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={isHistoryInView ? { scale: 1 } : { scale: 0 }}
+                    transition={{ duration: 0.6, delay: 0.5 }}
+                    className="text-6xl font-bold text-primary/20"
+                  >
+                    27
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={isHistoryInView ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.6, delay: 0.7 }}
+                    className="text-lg font-semibold text-primary"
+                  >
                     Años de Tradición
-                  </div>
-                  <div className="text-sm text-muted-foreground">
+                  </motion.div>
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={isHistoryInView ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.6, delay: 0.9 }}
+                    className="text-sm text-muted-foreground"
+                  >
                     Finca El Kinder, Santa Bárbara
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-xl"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl"></div>
-            </div>
+              </motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isHistoryInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="absolute -top-4 -right-4 w-24 h-24 bg-primary/20 rounded-full blur-xl"
+              ></motion.div>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={isHistoryInView ? { scale: 1 } : { scale: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="absolute -bottom-4 -left-4 w-32 h-32 bg-primary/10 rounded-full blur-2xl"
+              ></motion.div>
+            </motion.div>
           </div>
         </div>
       </section>
-      <section className="py-24 bg-gradient-to-br from-muted/30 to-background px-4 md:px-0">
+      <section
+        ref={valuesRef}
+        className="py-24 bg-gradient-to-br from-muted/30 to-background px-4 md:px-0"
+      >
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h3 className="text-4xl md:text-5xl font-bold text-primary mb-6">
+            <motion.h3
+              initial={{ opacity: 0, y: 30 }}
+              animate={
+                isValuesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }
+              }
+              transition={{ duration: 0.6 }}
+              className="text-4xl md:text-5xl font-bold text-primary mb-6"
+            >
               Nuestros Valores
-            </h3>
-            <div className="w-24 h-1 bg-primary rounded-full mx-auto mb-8"></div>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            </motion.h3>
+            <motion.div
+              initial={{ width: 0 }}
+              animate={isValuesInView ? { width: 96 } : { width: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="h-1 bg-primary rounded-full mx-auto mb-8"
+            ></motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={isValuesInView ? { opacity: 1 } : { opacity: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+            >
               Los principios que guían cada grano de café que producimos
-            </p>
+            </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:-translate-y-2">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isValuesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
+              transition={{ duration: 0.6, delay: 0.2 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30"
+            >
               <div className="space-y-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center"
+                >
                   <Award className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="text-xl font-bold text-primary mb-4">
                     Calidad Premium
@@ -154,13 +334,24 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:-translate-y-2">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isValuesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
+              transition={{ duration: 0.6, delay: 0.4 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30"
+            >
               <div className="space-y-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center"
+                >
                   <Users className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="text-xl font-bold text-primary mb-4">
                     Tradición Familiar
@@ -171,13 +362,24 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
 
-            <div className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30 hover:-translate-y-2">
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              animate={
+                isValuesInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }
+              }
+              transition={{ duration: 0.6, delay: 0.6 }}
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="group bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-primary/10 hover:border-primary/30"
+            >
               <div className="space-y-6">
-                <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                <motion.div
+                  whileHover={{ scale: 1.1, rotate: 10 }}
+                  className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center"
+                >
                   <Zap className="w-8 h-8 text-primary" />
-                </div>
+                </motion.div>
                 <div>
                   <h4 className="text-xl font-bold text-primary mb-4">
                     Tostado Artesanal
@@ -188,7 +390,7 @@ export default function Home() {
                   </p>
                 </div>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
